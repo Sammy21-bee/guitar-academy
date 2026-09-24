@@ -3,7 +3,7 @@ name: Deploy static site to GitHub Pages
 on:
   push:
     branches:
-      - master
+      - sammy21-bee-make-site-public
   workflow_dispatch:
 
 permissions:
