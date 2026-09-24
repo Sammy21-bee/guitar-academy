@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design system e UI kit | Guitar Academy — riprogettazione</title>
+<meta name="description" content="Design system della riprogettazione Guitar Academy: palette, tipografia, bottoni, card, form, spaziature e stati interattivi.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap">
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/sections.css">
+<style>
+.sp-row{display:flex;align-items:center;gap:14px;padding:6px 0;border-bottom:1px solid var(--line)}
+.sp-row code{width:110px;font-size:.78rem;color:var(--muted);flex-shrink:0}
+.sp-bar{height:10px;border-radius:4px;background:var(--amber-deep)}
+.sp-tag{font-size:.8rem;color:var(--ink-2)}
+.ds-grid{display:grid;gap:var(--s-6)}
+.ds-demo{display:flex;gap:12px;flex-wrap:wrap;align-items:center;padding:clamp(20px,3vw,32px);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-3)}
+.ds-demo--dark{background:var(--dark)}
+.ds-demo--col{flex-direction:column;align-items:stretch}
+.file-tree{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-2);padding:20px 24px;font-size:.88rem;color:var(--ink-2);max-width:560px}
+.file-tree code{color:var(--amber-deep);font-weight:600}
+.ds-check li{display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;font-size:.95rem;color:var(--ink-2)}
+.ds-check .chk{margin-top:3px}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Vai al contenuto</a>
+<svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden"><defs>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m4.5 12.5 5 5L19.5 6.5"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M12 7.6v5.6"/><path d="M12 16.4v.2"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.4 2.1L8.1 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c1 .3 1.9.6 2.9.7a2 2 0 0 1 1.6 2z"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m22 7.5-10 6-10-6"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.4 2"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21.5S5 15.2 5 10a7 7 0 0 1 14 0c0 5.2-7 11.5-7 11.5z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+<symbol id="i-fb" viewBox="0 0 24 24"><path d="M13.5 21v-7h2.6l.5-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.6V4.8c-.7-.1-1.6-.2-2.4-.2-2.4 0-4 1.4-4 4V11H8v3h2.3v7z"/></symbol>
+<symbol id="i-ext" viewBox="0 0 24 24"><path d="M13.5 4.5H19v5.5"/><path d="M19 5 10 14"/><path d="M19.5 13.5V18a1.8 1.8 0 0 1-1.8 1.8H6a1.8 1.8 0 0 1-1.8-1.8V6.3A1.8 1.8 0 0 1 6 4.5h4.5"/></symbol>
+<symbol id="i-credit" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10h19"/><path d="M6 14.5h4"/></symbol>
+</defs></svg>
+<header class="site-head"><div class="container site-head__inner">
+<a class="brand" href="index.html" aria-label="Guitar Academy — vai alla homepage"><span class="brand-mark" aria-hidden="true">GA</span><span class="brand-name">Guitar Academy<span class="brand-sub">Accademia di Chitarra Moderna</span></span></a>
+<nav class="site-nav" id="siteNav" aria-label="Navigazione principale"><ul>
+<li><a href="corsi/index.html">Corsi</a></li>
+<li><a href="accademia.html">L'Accademia</a></li>
+<li><a href="docenti.html">Docenti</a></li>
+<li><a href="eventi.html">Eventi</a></li>
+<li><a href="risorse.html">Risorse</a></li>
+<li><a href="contatti.html">Contatti</a></li>
+<li class="nav-cta-mobile"><a class="btn btn--accent" href="richiedi-informazioni.html">Richiedi informazioni</a></li>
+</ul></nav>
+<div class="head-actions">
+<a class="head-tel" href="tel:800029484"><svg class="ico ico--sm" aria-hidden="true"><use href="#i-phone"/></svg>800 029 484</a>
+<a class="btn btn--primary btn--sm" href="richiedi-informazioni.html">Richiedi informazioni</a>
+</div>
+<button class="nav-toggle js-menu-toggle" aria-expanded="false" aria-controls="siteNav" aria-label="Apri o chiudi il menu"><span></span><span></span><span></span></button>
+</div></header>
+<main id="main">
+<section class="page-hero"><div class="container"><nav class="crumbs" aria-label="Percorso di navigazione"><a href="index.html">Home</a><span aria-hidden="true">/</span><span aria-current="page">Design system</span></nav>
+<h1>Design system & UI kit</h1>
+<p class="lede">Questa pagina documenta i componenti vivi del prototipo: ogni elemento qui mostrato è il componente reale usato nelle pagine. La fonte unica sono i token in <code style="font-size:.9em">css/tokens.css</code>.</p>
+<div class="page-hero__meta"><span class="pill pill--outline-dark">Palette · tipografia · componenti · form · spaziature</span></div>
+</div></section>
+
+<section class="section"><div class="container"><div class="ds-grid">
+
+<div class="ds-block" id="colori"><div class="section-head" style="margin-bottom:28px"><p class="kicker">1 · Colore</p><h2 style="font-size:var(--fs-h2)">Antracite caldo, avorio, ambra</h2><p class="lede">Warm e musicale, senza stereotipi «rock». L'ambra è l'accento: si usa con misura su sfondi chiari (testo, icone, bordi) e come riempimento su sfondi scuri.</p></div>
+<div class="swatch-grid">
+<div class="swatch"><div class="swatch__chip" style="background:var(--bg)"><span>--bg</span></div><div class="swatch__meta"><strong>Avorio</strong><code>#FBF7EF</code><br>sfondo generale</div></div>
+<div class="swatch"><div class="swatch__chip" style="background:var(--surface);border-bottom:1px solid var(--line)"><span>--surface</span></div><div class="swatch__meta"><strong>Superficie</strong><code>#FFFFFF</code><br>card e pannelli</div></div>
+<div class="swatch"><div class="swatch__chip swatch__chip--ink" style="background:var(--ink)"><span>--ink</span></div><div class="swatch__meta"><strong>Inchiostro</strong><code>#191510</code><br>testo e CTA primarie</div></div>
+<div class="swatch"><div class="swatch__chip" style="background:var(--ink-2)"><span>--ink-2</span></div><div class="swatch__meta"><strong>Grigio testo</strong><code>#45403A</code><br>paragrafi</div></div>
+<div class="swatch"><div class="swatch__chip" style="background:var(--muted)"><span>--muted</span></div><div class="swatch__meta"><strong>Testo debole</strong><code>#756C60</code><br>note</div></div>
+<div class="swatch"><div class="swatch__chip" style="background:var(--line)"><span>--line</span></div><div class="swatch__meta"><strong>Linea</strong><code>#E9E0D0</code><br>bordi sottili</div></div>
+<div class="swatch"><div class="swatch__chip" style="background:var(--amber)"><span>--amber</span></div><div class="swatch__meta"><strong>Ambra</strong><code>#E08A2E</code><br>accento, CTA su scuro</div></div>
+<div class="swatch"><div class="swatch__chip" style="background:var(--amber-deep)"><span>--amber-deep</span></div><div class="swatch__meta"><strong>Ambra scura</strong><code>#9C5713</code><br>testo accento su chiaro (AA)</div></div>
+<div class="swatch"><div class="swatch__chip" style="background:var(--amber-tint)"><span>--amber-tint</span></div><div class="swatch__meta"><strong>Ambra tenue</strong><code>#F7E8D2</code><br>fondo evidenza</div></div>
+<div class="swatch"><div class="swatch__chip swatch__chip--ink" style="background:var(--dark)"><span>--dark</span></div><div class="swatch__meta"><strong>Antracite</strong><code>#16120D</code><br>sezioni scure</div></div>
+<div class="swatch"><div class="swatch__chip swatch__chip--ink" style="background:var(--dark-2)"><span>--dark-2</span></div><div class="swatch__meta"><strong>Antracite card</strong><code>#201A13</code><br>card su scuro</div></div>
+<div class="swatch"><div class="swatch__chip swatch__chip--ink" style="background:var(--cream)"><span>--cream</span></div><div class="swatch__meta"><strong>Crema</strong><code>#F5EEDF</code><br>testo su scuro</div></div>
+</div>
+<p class="form-note mt-1">Contrasti verificati: testo su avorio ≥ 9:1 · testo ambra scura su avorio ≥ 4.6:1 · testo su ambra ≥ 5.8:1 · crema su antracite ≥ 12:1.</p>
+</div>
+
+<div class="ds-block" id="tipografia"><div class="section-head" style="margin-bottom:28px"><p class="kicker">2 · Tipografia</p><h2 style="font-size:var(--fs-h2)">Archivo + Inter + un tocco serif</h2><p class="lede">Display: Archivo (500–900) per titoli, lettering stretto. Testo: Inter. Accento editoriale: Instrument Serif corsivo, solo per parole chiave.</p></div>
+<div class="ds-demo ds-demo--col" style="gap:0">
+<div class="type-row"><span class="t-label">Display / H1</span><div><p class="t-demo" style="font-weight:900;font-size:clamp(2rem,4vw,3.4rem);line-height:1.06;letter-spacing:-.02em">Impara la chitarra con un percorso <em class="display-serif">costruito per te.</em></p></div></div>
+<div class="type-row"><span class="t-label">H2 sezione</span><div><h2 style="font-size:var(--fs-h2);margin:0">Trova il tuo percorso</h2></div></div>
+<div class="type-row"><span class="t-label">H3</span><div><h3 style="margin:0">Corsi LIGHT — senza prerequisiti</h3></div></div>
+<div class="type-row"><span class="t-label">Testo (16/26)</span><div><p style="margin:0;max-width:62ch">La Guitar Academy nasce nel 1996 per volontà di Andrea Quartarone: una formazione efficace per chiunque abbia un interesse vero per la chitarra, a qualsiasi età e in qualunque genere.</p></div></div>
+<div class="type-row"><span class="t-label">Lead</span><div><p style="font-size:var(--fs-lead);color:var(--ink-2);margin:0">Il punto di ingresso dell'Accademia: nessun requisito, nessuna età per iniziare.</p></div></div>
+<div class="type-row"><span class="t-label">Kicker</span><div><p class="kicker" style="margin-bottom:0">Offerta formativa</p></div></div>
+<div class="type-row"><span class="t-label">Micro / note</span><div><p style="font-size:var(--fs-small);color:var(--muted);margin:0">Rispondiamo di norma entro 24 ore · Nessuno spam, promesso.</p></div></div>
+</div>
+</div>
+
+<div class="ds-block" id="bottoni"><div class="section-head" style="margin-bottom:28px"><p class="kicker">3 · Bottoni</p><h2 style="font-size:var(--fs-h2)">Grandi, chiari, con stati visibili</h2><p class="lede">Altezza minima 42 px (mobile 50+), raggio 12, focus ring ambra, feedback al tap. L'accento è riservato alle azioni di conversione.</p></div>
+<div class="ds-demo"><a class="btn btn--primary" href="index.html">Primaria — scuro <svg class="ico ico--fly" aria-hidden="true"><use href="#i-arrow"/></svg></a><a class="btn btn--accent" href="index.html">Accento — richiesta info</a><a class="btn btn--outline" href="index.html">Secondaria</a><a class="btn btn--link" href="index.html">Link testuale <svg class="ico ico--sm" aria-hidden="true"><use href="#i-arrow"/></svg></a><button class="btn btn--primary" disabled>Disabilitato</button><a class="btn btn--primary btn--lg" href="index.html">Grande</a><a class="btn btn--primary btn--sm" href="index.html">Piccolo</a></div>
+<div class="ds-demo ds-demo--dark"><a class="btn btn--accent" href="index.html">Accento su scuro</a><a class="btn btn--ghost" href="index.html">Fantasma su scuro</a><a class="btn btn--light" href="index.html">Chiaro su scuro</a></div>
+<p class="form-note mt-1">Stati: hover scurisce o inverte · active comprime 1 px · focus-visible mostra il ring ambra · ogni pulsante con icona usa il tratteggio 1.8 e freccia animata 160 ms.</p>
+</div>
+
+<div class="ds-block" id="card"><div class="section-head" style="margin-bottom:28px"><p class="kicker">4 · Card, pill e dati</p><h2 style="font-size:var(--fs-h2)">Leggerezza: bordo sottile, ombra al hover</h2></div>
+<div class="course-grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+<a class="course-card" href="corsi/light.html" style="text-decoration:none"><div class="course-card__head"><span class="tile tile--tint" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span><span class="pill pill--amber">Senza prerequisiti</span></div><h3 class="course-card__title">Corsi LIGHT</h3><p class="course-card__desc">Esempio: la card percorso con chi, tick e CTA in basso.</p><span class="cc-cta">Scopri il corso <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+<div class="course-card" style="gap:12px"><div class="course-card__head"><span class="tile" aria-hidden="true"><svg class="ico"><use href="#i-phone"/></svg></span></div><h3 class="course-card__title" style="font-size:1.2rem">Card contenuto</h3><p class="course-card__desc">Usata per contatti, risorse e blocchi informativi: stessa anatomia, nessun link intero.</p></div>
+</div>
+<div class="demo-zone mt-1"><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="pill pill--amber">Pill ambra</span><span class="pill pill--outline">Pill contorno</span><span class="pill pill--dark">Pill scura</span><span class="pill pill--outline-dark">Pill su scuro</span></div>
+<div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center"><div class="data-point"><strong>1996</strong><span>Anno di fondazione</span></div><div class="data-point"><strong>4</strong><span>Famiglie di corsi</span></div><div class="data-point"><strong>24 h</strong><span>Risposta</span></div></div></div>
+</div>
+
+<div class="ds-block" id="media"><div class="section-head" style="margin-bottom:28px"><p class="kicker">5 · Segnaposto media</p><h2 style="font-size:var(--fs-h2)">Dove non c'è ancora una foto</h2><p class="lede">Ogni spazio immagine usa <code>.ph-media</code>: gradiente caldo, trama, monogramma e tag «da sostituire». In produzione basta inserire la foto reale nello stesso contenitore.</p></div>
+<div class="demo-zone"><div style="display:flex;gap:20px;flex-wrap:wrap"><div class="ph-media ph-1x1" style="width:200px" role="img" aria-label="Esempio segnaposto ritratto"><span class="ph-monogram" aria-hidden="true">AQ</span><span class="ph-note"><svg class="ico" aria-hidden="true"><use href="#i-credit"/></svg>Foto da sostituire</span></div>
+<div class="ph-media ph-16x9" style="width:360px;max-width:100%" role="img" aria-label="Esempio segnaposto video"><svg class="ico" aria-hidden="true"><use href="#i-credit"/></svg><span class="ph-note"><svg class="ico" aria-hidden="true"><use href="#i-credit"/></svg>Video da inserire</span></div>
+<div class="callout" style="max-width:420px"><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><p><strong>Regola:</strong> alt text descrittivo sempre presente; il tag si elimina quando arriva il materiale reale.</p></div></div></div>
+</div>
+
+<div class="ds-block" id="form"><div class="section-head" style="margin-bottom:28px"><p class="kicker">6 · Form</p><h2 style="font-size:var(--fs-h2)">Brevi, validati, accessibili</h2><p class="lede">Etichette sempre visibili, campi da 50 px, errore sotto il campo con testo e icona, messaggio di conferma con aria-live. La validazione vive in <code>js/main.js</code>.</p></div>
+<div class="layout-detail" style="grid-template-columns:1fr 1fr">
+<div class="ds-demo ds-demo--col"><div class="field"><label for="ds-nome">Nome e cognome <span class="req" aria-hidden="true">*</span></label><input class="input" type="text" id="ds-nome" value="Mario Rossi"><p class="form-note">Stato normale: bordo caldo, focus con ring ambra.</p></div>
+<div class="field field--error"><label for="ds-email">Email <span class="req" aria-hidden="true">*</span></label><input class="input" type="email" id="ds-email" value="mario@" aria-invalid="true"><p class="field-error" role="alert"><svg class="ico" aria-hidden="true"><use href="#i-alert"/></svg><span data-msg>Inserisci un indirizzo email valido.</span></p></div>
+<div class="field"><label for="ds-corso">Corso di interesse <span class="req" aria-hidden="true">*</span></label><select class="input" id="ds-corso"><option selected>Seleziona un percorso…</option><option>LIGHT</option><option>PRO</option></select></div>
+<label class="check" for="ds-privacy"><input type="checkbox" id="ds-privacy"><span>Acconsento al trattamento dei dati (esempio di checkbox con testo lungo e link <a href="privacy.html">informativa</a>).</span></label></div>
+<div class="ds-demo ds-demo--col"><div class="form-success is-visible" role="status"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><div><h3>Richiesta inviata</h3><p>Conferma visibile con stato live: annunciata dagli screen reader.</p></div></div>
+<div class="form-error-box is-visible" role="alert">Errore generale (es. consenso privacy mancante): box in alto o sopra l'invio.</div>
+<p class="form-note">Il pulsante di invio è sempre <code>.btn--accent</code> a tutta larghezza su mobile; la nota sotto il pulsante rassicura su tempi e uso dei dati.</p></div>
+</div>
+</div>
+
+<div class="ds-block" id="spazio"><div class="section-head" style="margin-bottom:28px"><p class="kicker">7 · Spaziature</p><h2 style="font-size:var(--fs-h2)">Scala 4 px, sezioni generose</h2><p class="lede">Token <code>--s-1…--s-9</code> da 4 a 96 px. Le sezioni respirano: padding verticale 56–104 px con <code>clamp()</code>; container a 1184 px.</p></div>
+<div class="ds-demo ds-demo--col" style="gap:2px">
+<div class="sp-row"><code>--s-2 · 8px</code><span class="sp-bar" style="width:8px"></span><span class="sp-tag">gap icona-testo</span></div>
+<div class="sp-row"><code>--s-3 · 12px</code><span class="sp-bar" style="width:12px"></span><span class="sp-tag">gap pill</span></div>
+<div class="sp-row"><code>--s-4 · 16px</code><span class="sp-bar" style="width:16px"></span><span class="sp-tag">padding card piccole</span></div>
+<div class="sp-row"><code>--s-5 · 24px</code><span class="sp-bar" style="width:24px"></span><span class="sp-tag">gap standard</span></div>
+<div class="sp-row"><code>--s-6 · 32px</code><span class="sp-bar" style="width:32px"></span><span class="sp-tag">gap sezioni interne</span></div>
+<div class="sp-row"><code>--s-7 · 48px</code><span class="sp-bar" style="width:48px"></span><span class="sp-tag">header / blocchi</span></div>
+<div class="sp-row"><code>--s-8 · 64px</code><span class="sp-bar" style="width:64px"></span><span class="sp-tag">respirazione</span></div>
+<div class="sp-row"><code>--s-9 · 96px</code><span class="sp-bar" style="width:96px"></span><span class="sp-tag">distanza sezioni</span></div>
+</div>
+</div>
+
+<div class="ds-block" id="accessibilita"><div class="section-head" style="margin-bottom:28px"><p class="kicker">8 · Accessibilità, UX e performance</p><h2 style="font-size:var(--fs-h2)">Scelte di fondo del sistema</h2></div>
+<div class="demo-zone" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));display:grid">
+<div><ul class="ds-check checklist"><li><span class="chk" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span><span>Mobile-first: breakpoint 1080 · 940 · 640; pulsanti ≥ 44 px; menu overlay con Escape e chiusura su link.</span></li>
+<li><span class="chk" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span><span>Contrasti AA verificati, focus ring visibile, skip link, alt text e aria-current sulle sezioni attive.</span></li></ul></div>
+<div><ul class="ds-check checklist"><li><span class="chk" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span><span>Un solo H1 per pagina, heading gerarchici, meta title/description unici, JSON-LD EducationalOrganization/Course nei head.</span></li>
+<li><span class="chk" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span><span>Zero librerie: CSS vanilla + 1 file JS; niente caroselli, pop-up o animazioni invasive; <code>prefers-reduced-motion</code> rispettato.</span></li></ul></div>
+</div>
+</div>
+
+<div class="ds-block" id="uso"><div class="section-head" style="margin-bottom:28px"><p class="kicker">9 · Come si usa il prototipo</p><h2 style="font-size:var(--fs-h2)">Struttura e punti da completare</h2></div>
+<div class="demo-zone" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));display:grid;align-items:start">
+<div class="file-tree"><code>guitar-academy/</code><br>├─ index.html · homepage<br>├─ corsi/ · panoramica + 4 dettagli<br>├─ accademia.html · docenti.html<br>├─ eventi.html · risorse.html · news.html<br>├─ contatti.html · richiedi-informazioni.html<br>├─ privacy.html · cookie.html<br>├─ design-system.html · questa pagina<br>├─ css/ · tokens · base · components · sections<br>├─ js/main.js · menu · form · rivelazioni<br>└─ assets/favicon.svg</div>
+<div><ul class="ds-check checklist">
+<li><span class="chk" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span><span><strong>Foto:</strong> sostituire ogni <code>.ph-media</code> (cercare <code>ph-note</code> nei file) con gli scatti reali di lezioni, docenti e sede.</span></li>
+<li><span class="chk" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span><span><strong>Form:</strong> collegare i moduli al servizio dell'Accademia nel blocco segnalato in <code>js/main.js</code>.</span></li>
+<li><span class="chk" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span><span><strong>Contenuti:</strong> le voci «su richiesta» e i profili «in aggiornamento» vanno completati con i dati ufficiali.</span></li>
+<li><span class="chk" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span><span><strong>Legale:</strong> privacy e cookie sono segnaposto da validare; font Google sostituibili con self-hosting in produzione.</span></li>
+</ul></div>
+</div>
+</div>
+
+</div></div></section>
+</main>
+<footer class="site-foot"><div class="container">
+<div class="site-foot__grid">
+<div class="foot-brand">
+<a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">GA</span><span class="brand-name" style="color:var(--cream)">Guitar Academy<span class="brand-sub" style="color:var(--cream-2)">Accademia di Chitarra Moderna</span></span></a>
+<p>Dal 1996, la scuola di chitarra moderna fondata e diretta da Andrea Quartarone. Corsi in sede in Sicilia ed E-Lessons per studiare da casa.</p>
+<div class="foot-social"><a href="https://www.facebook.com/guitaracademy/" target="_blank" rel="noopener" aria-label="Pagina Facebook della Guitar Academy"><svg class="ico" aria-hidden="true"><use href="#i-fb"/></svg></a></div>
+</div>
+<nav aria-label="Esplora il sito"><h2><span>—</span> L'Accademia</h2><ul>
+<li><a href="accademia.html">Storia e metodo</a></li>
+<li><a href="docenti.html">Docenti e tutor</a></li>
+<li><a href="eventi.html">Eventi e masterclass</a></li>
+<li><a href="news.html">News</a></li>
+<li><a href="risorse.html">Risorse</a></li>
+</ul></nav>
+<nav aria-label="Corsi"><h2><span>—</span> Corsi</h2><ul>
+<li><a href="corsi/pro.html">Corsi PRO</a></li>
+<li><a href="corsi/light.html">Corsi LIGHT</a></li>
+<li><a href="corsi/cab.html">Corsi CAB</a></li>
+<li><a href="corsi/full-pro.html">Corsi FULL PRO</a></li>
+</ul></nav>
+<div><h2><span>—</span> Contatti</h2><ul class="foot-contacts">
+<li><svg class="ico ico--sm" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:800029484"><strong>800 029 484</strong> — numero verde</a></li>
+<li><svg class="ico ico--sm" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:info@guitaracademy.it"><strong>info@guitaracademy.it</strong></a></li>
+<li><svg class="ico ico--sm" aria-hidden="true"><use href="#i-clock"/></svg><span>Rispondiamo di norma entro 24 ore</span></li>
+<li><svg class="ico ico--sm" aria-hidden="true"><use href="#i-pin"/></svg><span>Catania · Siracusa · Trapani · Palermo · Enna · Ragusa</span></li>
+</ul><p class="foot-note"><a href="https://www.guitaracademy.it/store/" target="_blank" rel="noopener" style="font-weight:700">Store e pubblicazioni storiche <svg class="ico ico--sm" aria-hidden="true" style="display:inline-block;vertical-align:-3px"><use href="#i-ext"/></svg></a></p></div>
+</div>
+<div class="site-foot__bottom">
+<p>© <span class="js-year">2026</span> Guitar Academy – Accademia di Chitarra Moderna · Mockup di riprogettazione</p>
+<div class="legal"><a href="privacy.html">Privacy</a><a href="cookie.html">Cookie</a></div>
+</div>
+</div></footer>
+<script src="js/main.js"></script>
+</body>
+</html>
