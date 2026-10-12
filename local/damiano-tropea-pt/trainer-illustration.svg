@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1120" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrazione di una palestra</title>
+  <desc id="desc">Illustrazione grafica di una persona che si allena, su sfondo scuro con dettagli verde lime.</desc>
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#3a4030"/>
+      <stop offset=".52" stop-color="#242820"/>
+      <stop offset="1" stop-color="#131512"/>
+    </linearGradient>
+    <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#30352a"/>
+      <stop offset="1" stop-color="#141612"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#e5ad7b"/>
+      <stop offset="1" stop-color="#9a5c3a"/>
+    </linearGradient>
+    <linearGradient id="shirt" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#d5ff42"/>
+      <stop offset="1" stop-color="#718d1d"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0v48" fill="none" stroke="#f5f5f0" stroke-opacity=".045"/>
+    </pattern>
+  </defs>
+  <path fill="url(#wall)" d="M0 0h900v1120H0z"/>
+  <path fill="url(#grid)" d="M0 0h900v1120H0z"/>
+  <path fill="#d5ff42" fill-opacity=".07" d="M655 0h245v475L540 112z"/>
+  <path fill="none" stroke="#f5f5f0" stroke-opacity=".13" stroke-width="3" d="M88 0v790m67-790v790M0 156h900"/>
+  <path fill="none" stroke="#d5ff42" stroke-opacity=".35" stroke-width="7" d="M101 160h316"/>
+  <path fill="url(#floor)" d="M0 775h900v345H0z"/>
+  <path fill="none" stroke="#f5f5f0" stroke-opacity=".12" stroke-width="3" d="m0 825 900 75M0 963l900 70M160 775 0 1120m435-345 78 345m215-345 225 273"/>
+
+  <g opacity=".77" fill="none" stroke="#11130f" stroke-linecap="round" stroke-linejoin="round">
+    <path stroke-width="25" d="M717 265v487m-73-401h146m-116 0v206m86-206v206m-166 200h247"/>
+    <path stroke-width="19" d="M647 528h143m-125 0v86m105-86v86"/>
+    <path stroke-width="13" d="M621 614h195"/>
+  </g>
+  <g fill="#d5ff42" opacity=".25">
+    <rect x="626" y="254" width="20" height="267" rx="8"/>
+    <rect x="788" y="254" width="20" height="267" rx="8"/>
+    <rect x="604" y="595" width="15" height="102" rx="7"/>
+    <rect x="813" y="595" width="15" height="102" rx="7"/>
+  </g>
+
+  <ellipse cx="435" cy="997" rx="255" ry="38" fill="#080907" fill-opacity=".55"/>
+
+  <g stroke="#171914" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#272b23" stroke-width="12" d="M344 706c-40 73-62 160-79 258l83 21c36-88 73-144 120-195l55 184 94-25c-17-123-31-222-83-296z"/>
+    <path fill="#d0a17a" stroke-width="12" d="m267 943-19 63c-3 12 5 22 18 26l78 20c21 5 47-4 58-18l13-17-88-43zM528 950l-7 53c-2 16 11 29 28 29h103c16 0 30-10 32-24l2-19-91-33z"/>
+    <path fill="url(#shirt)" stroke-width="12" d="M340 433c34-29 113-39 158-10 47 31 79 128 82 225l-29 86c-84 38-171 26-242-7-9-103-11-245 31-294z"/>
+    <path fill="url(#skin)" stroke-width="12" d="M361 454c-42 22-74 52-113 82l-105-92-36 36c43 66 83 112 124 132 18 9 35 4 52-7l132-92z"/>
+    <path fill="url(#skin)" stroke-width="12" d="M485 441c57 4 102 28 130 70l86-104 42 31c-26 80-61 138-101 165-22 15-46 11-65-9l-111-99z"/>
+    <path fill="url(#skin)" stroke-width="10" d="M392 353c0-69 29-116 82-116s83 45 83 112c0 64-38 117-83 117s-82-51-82-113z"/>
+    <path fill="#171914" stroke-width="9" d="M388 336c-7-82 27-133 97-133 52 0 87 37 89 92-40-4-65-32-77-52-21 46-58 75-109 93z"/>
+    <path fill="none" stroke="#171914" stroke-width="8" d="M465 355h1"/>
+  </g>
+
+  <g transform="rotate(-18 451 444)" stroke="#11130f" stroke-linejoin="round">
+    <path fill="none" stroke-width="17" d="M99 244v60m704-60v60M99 274h704"/>
+    <path fill="#d5ff42" stroke-width="9" d="M81 224h35v101H81zm-26 21h24v58H55zm722-21h35v101h-35zm35 21h24v58h-24z"/>
+    <path fill="url(#skin)" stroke-width="8" d="M103 280c5-24 27-33 48-27l27 8-3 28-36 13c-18 6-32-3-36-22zm660 0c-5-24-27-33-48-27l-27 8 3 28 36 13c18 6 32-3 36-22z"/>
+  </g>
+
+  <path fill="#d5ff42" d="M49 58h107v5H49z"/>
+  <text x="52" y="101" fill="#f5f5f0" font-family="Arial,sans-serif" font-size="20" font-weight="700" letter-spacing="5">TRAIN WITH INTENTION</text>
+  <text x="54" y="1072" fill="#d5ff42" font-family="Arial,sans-serif" font-size="15" font-weight="700" letter-spacing="4">DAMIANO TROPEA · PERSONAL TRAINER</text>
+</svg>

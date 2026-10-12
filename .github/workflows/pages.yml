@@ -5,6 +5,12 @@ on:
     branches:
       - sammy21-bee-make-site-public
   workflow_dispatch:
+    inputs:
+      preview:
+        description: "Include the unlisted local trainer preview"
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -28,10 +34,19 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload site
+      - name: Stage public site
+        run: |
+          mkdir -p _site
+          if [ "${{ inputs.preview }}" = "true" ]; then
+            rsync -a --exclude='/.git/' --exclude='/_site/' ./ _site/
+          else
+            rsync -a --exclude='/.git/' --exclude='/local/' --exclude='/_site/' ./ _site/
+          fi
+
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
