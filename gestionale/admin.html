@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pannello Admin — Gestionale Damiano Tropea PT</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="assets/css/gestionale.css">
+</head>
+<body>
+
+<div class="wrap">
+  <header class="g-header">
+    <a class="g-brand" href="../index.html">
+      <span class="g-brand-mark">DT</span>
+      <span class="g-brand-text">Gestionale<span class="g-brand-sub">Pannello Admin · Damiano Tropea PT</span></span>
+    </a>
+    <div class="btn-row no-print">
+      <a class="g-top-link" href="area-cliente.html">Vai all'Area Cliente →</a>
+      <a class="g-top-link" href="../index.html">Torna al sito</a>
+    </div>
+  </header>
+
+  <!-- LOGIN ADMIN -->
+  <section id="login-screen" class="login-shell" style="min-height:40vh">
+    <div class="card login-card">
+      <h1>Accesso al pannello</h1>
+      <p>Inserisci la tua password: il sistema riconosce da solo se sei il titolare o l'admin.</p>
+      <div id="login-msg"></div>
+      <form id="login-form">
+        <div class="field">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" autocomplete="current-password" required>
+        </div>
+        <button class="btn btn--primary" type="submit" style="width:100%">Entra</button>
+      </form>
+      <p style="margin-top:16px;font-size:.8rem">Credenziali pubbliche della demo: titolare <code>demo-damiano</code>, admin <code>demo-admin</code>. Non usarle per proteggere dati reali.</p>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard-screen" hidden>
+    <div class="card card--tight">
+      <div class="btn-row" style="justify-content:space-between">
+        <div class="btn-row">
+          <span id="role-badge" class="tag tag--ok"></span>
+          <button class="btn btn--primary btn--sm" id="btn-nuovo-cliente">+ Nuovo cliente</button>
+          <button class="btn btn--ghost btn--sm" id="btn-export">Scarica backup locale</button>
+          <button class="btn btn--ghost btn--sm" id="btn-import-trigger" data-admin-only>Importa dati</button>
+          <input type="file" id="btn-import" accept="application/json,.js" hidden>
+        </div>
+        <div class="btn-row">
+          <input type="search" id="search-clienti" placeholder="Cerca cliente…" style="min-width:200px">
+          <button class="btn btn--ghost btn--sm" id="btn-impostazioni">Impostazioni</button>
+          <button class="btn btn--ghost btn--sm" id="btn-logout">Esci</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="import-export-msg"></div>
+
+    <div id="settings-panel" class="card" hidden>
+      <h2>Impostazioni</h2>
+      <div class="field" style="max-width:320px">
+        <label for="new-password-titolare">Nuova password titolare (Damiano)</label>
+        <input type="password" id="new-password-titolare" placeholder="Nuova password titolare">
+      </div>
+      <button class="btn btn--primary btn--sm" id="btn-save-password-titolare">Salva password titolare</button>
+
+      <div data-admin-only style="margin-top:20px;padding-top:16px;border-top:1px solid var(--line)">
+        <h3>Solo per l'admin</h3>
+        <div class="field" style="max-width:320px">
+          <label for="new-password-admin">Nuova password admin</label>
+          <input type="password" id="new-password-admin" placeholder="Nuova password admin">
+        </div>
+        <button class="btn btn--primary btn--sm" id="btn-save-password-admin">Salva password admin</button>
+      </div>
+
+      <p style="margin-top:14px">Demo pubblica: i dati restano solo in questo browser. Il login non protegge dati reali e non c'è sincronizzazione tra dispositivi. Usa "Scarica backup locale" solo per dati inventati.</p>
+    </div>
+
+    <div id="clienti-list"></div>
+  </section>
+
+  <!-- SCHEDA CLIENTE (creazione / modifica) -->
+  <section id="editor-screen" hidden>
+    <div class="btn-row" style="margin-bottom:16px">
+      <button class="btn btn--ghost btn--sm" id="btn-torna-lista">← Torna all'elenco</button>
+    </div>
+
+    <div class="card">
+      <div class="grid-2">
+        <div>
+          <h1 id="editor-title">Nuovo cliente</h1>
+          <p>Password univoca per l'accesso del cliente all'Area Cliente.</p>
+        </div>
+        <div style="text-align:right">
+          <label>Password cliente</label>
+          <div class="btn-row" style="justify-content:flex-end">
+            <input type="text" id="f-pin" maxlength="4" style="max-width:100px;text-align:center;font-family:var(--font-display);font-size:1.3rem" inputmode="numeric">
+            <button class="btn btn--ghost btn--sm" id="btn-nuovo-pin">Rigenera</button>
+          </div>
+          <p id="pin-msg" style="font-size:.78rem"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs no-print">
+      <button class="tab-btn is-active" data-tab="anagrafica">Anagrafica</button>
+      <button class="tab-btn" data-tab="allenamento">Scheda allenamento</button>
+      <button class="tab-btn" data-tab="alimentazione">Alimentazione</button>
+      <button class="tab-btn" data-tab="foto">Foto e progressi</button>
+      <button class="tab-btn" data-tab="pagamenti">Abbonamento e pagamenti</button>
+      <button class="tab-btn" data-tab="video">Video esercizi</button>
+    </div>
+
+    <div class="tab-panel is-active" data-panel="anagrafica">
+      <div class="card">
+        <div class="grid-3">
+          <div class="field"><label for="f-nome">Nome</label><input id="f-nome"></div>
+          <div class="field"><label for="f-cognome">Cognome</label><input id="f-cognome"></div>
+          <div class="field"><label for="f-attivo">Stato</label>
+            <select id="f-attivo"><option value="true">Attivo</option><option value="false">Non attivo</option></select>
+          </div>
+          <div class="field"><label for="f-telefono">Telefono</label><input id="f-telefono"></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" type="email"></div>
+          <div class="field"><label for="f-nascita">Data di nascita</label><input id="f-nascita" type="date"></div>
+          <div class="field"><label for="f-inizio">Inizio percorso</label><input id="f-inizio" type="date"></div>
+        </div>
+        <div class="field"><label for="f-obiettivo">Obiettivo del percorso</label><textarea id="f-obiettivo" placeholder="Es. dimagrimento, ricomposizione corporea, forza, preparazione gara…"></textarea></div>
+        <div class="field"><label for="f-note-mediche">Note mediche / infortuni da tenere a mente</label><textarea id="f-note-mediche"></textarea></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="allenamento">
+      <div class="card">
+        <div class="grid-2">
+          <div class="field"><label for="f-prog-titolo">Titolo scheda</label><input id="f-prog-titolo" placeholder="Es. Scheda Ipertrofia — Fase 1"></div>
+          <div class="field"><label for="f-prog-agg">Inizio scheda</label><input id="f-prog-agg" type="date"></div>
+        </div>
+        <div id="giorni-list"></div>
+        <button class="btn btn--ghost btn--sm" id="btn-add-giorno">+ Aggiungi giorno</button>
+        <div class="field" style="margin-top:16px"><label for="f-prog-note">Note e consigli</label><textarea id="f-prog-note"></textarea></div>
+        <button class="btn btn--ghost btn--sm" id="btn-export-pdf-allenamento">Esporta scheda in PDF</button>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="alimentazione">
+      <div class="card">
+        <div class="field"><label for="f-alim-inizio">Inizio alimentazione</label><input id="f-alim-inizio" type="date"></div>
+        <div class="grid-3">
+          <div class="field"><label for="f-alim-calorie">Calorie</label><input id="f-alim-calorie" placeholder="Es. 2200 kcal"></div>
+          <div class="field"><label for="f-alim-carbo">Carboidrati</label><input id="f-alim-carbo" placeholder="Es. 220 g"></div>
+          <div class="field"><label for="f-alim-proteine">Proteine</label><input id="f-alim-proteine" placeholder="Es. 150 g"></div>
+          <div class="field"><label for="f-alim-grassi">Grassi</label><input id="f-alim-grassi" placeholder="Es. 70 g"></div>
+        </div>
+        <h3 style="margin-top:10px">Indicazioni alimentari per pasto</h3>
+        <div id="pasti-list"></div>
+        <button class="btn btn--ghost btn--sm" id="btn-add-pasto">+ Aggiungi pasto</button>
+        <div class="field" style="margin-top:16px"><label for="f-alim-note">Note generali su alimentazione</label><textarea id="f-alim-note"></textarea></div>
+        <button class="btn btn--ghost btn--sm" id="btn-export-pdf-alimentazione">Esporta in PDF</button>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="foto">
+      <div class="card">
+        <h3>Foto e progressi</h3>
+        <div class="grid-3">
+          <div class="field"><label for="f-foto-data">Data</label><input id="f-foto-data" type="date"></div>
+        </div>
+        <div class="field"><label for="f-foto-file">Carica immagine</label><input id="f-foto-file" type="file" accept="image/*"></div>
+        <button class="btn btn--ghost btn--sm" id="btn-add-foto">+ Aggiungi foto</button>
+        <p style="font-size:.8rem;margin-top:8px">Le immagini sono incluse nel backup locale; usa file leggeri e non condividere il backup pubblicamente.</p>
+        <div class="photo-grid" id="foto-grid" style="margin-top:14px"></div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="pagamenti">
+      <div class="card">
+        <h3>Abbonamento attivo</h3>
+        <div class="grid-3">
+          <div class="field"><label for="f-abb-tipo">Periodo abbonamento</label><input id="f-abb-tipo" placeholder="Es. Mensile, Trimestrale…"></div>
+          <div class="field"><label for="f-abb-importo">Importo (€)</label><input id="f-abb-importo" type="number" step="0.01"></div>
+          <div class="field"><label for="f-abb-scadenza">Prossima scadenza</label><input id="f-abb-scadenza" type="date"></div>
+        </div>
+        <h3 style="margin-top:20px">Storico pagamenti</h3>
+        <table id="pagamenti-table"><thead><tr><th>Data</th><th>Importo (€)</th><th>Metodo</th><th>Note</th><th></th></tr></thead><tbody></tbody></table>
+        <button class="btn btn--ghost btn--sm" id="btn-add-pagamento" style="margin-top:12px">+ Registra pagamento</button>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-panel="video">
+      <div class="card">
+        <h3>Video esecuzione esercizi</h3>
+        <div id="video-list"></div>
+        <button class="btn btn--ghost btn--sm" id="btn-add-video">+ Aggiungi esercizio</button>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn--primary" id="btn-salva-cliente">Salva cliente</button>
+      <button class="btn btn--danger" id="btn-elimina-cliente" data-admin-only>Elimina cliente</button>
+    </div>
+  </section>
+</div>
+
+<script src="demo-access-data.js"></script>
+<script src="assets/js/store.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

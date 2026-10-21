@@ -1,0 +1,3 @@
+# Dati reali dei clienti e credenziali di produzione: non versionarli.
+data/clienti-data.js
+access-data.js
